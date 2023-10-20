@@ -1,0 +1,14 @@
+#include <iostream>
+
+int main() {
+    for (int i = 1; i <= 10; i++) {
+        int multiple = i * 5;
+        std::cout << multiple;
+        if (i < 10) {
+            std::cout << ", ";
+        } else {
+            std::cout << std::endl;
+        }
+    }
+    return 0;
+}
