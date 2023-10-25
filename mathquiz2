@@ -1,0 +1,54 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+int main() {
+    // Seed the random number generator
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    int correctAnswers = 0;
+    const int numQuestions = 5;
+
+    for (int i = 1; i <= numQuestions; i++) {
+        int num1 = std::rand() % 10;
+        int num2 = std::rand() % 10;
+        int operatorChoice = std::rand() % 4;
+
+        int correctAnswer;
+        char operation;
+
+        switch (operatorChoice) {
+            case 0:
+                correctAnswer = num1 + num2;
+                operation = '+';
+                break;
+            case 1:
+                correctAnswer = num1 - num2;
+                operation = '-';
+                break;
+            case 2:
+                correctAnswer = num1 * num2;
+                operation = '*';
+                break;
+            case 3:
+                correctAnswer = num1 / (num2 == 0 ? 1 : num2);  // Avoid division by zero
+                operation = '/';
+                break;
+        }
+
+        std::cout << "Question " << i << ": What is " << num1 << " " << operation << " " << num2 << "? ";
+        int userAnswer;
+        std::cin >> userAnswer;
+
+        if (userAnswer == correctAnswer) {
+            std::cout << "Correct!" << std::endl;
+            correctAnswers++;
+        } else {
+            std::cout << "Incorrect. The correct answer is " << correctAnswer << "." << std::endl;
+        }
+    }
+
+    std::cout << "You got " << correctAnswers << " out of " << numQuestions << " questions correct." << std::endl;
+
+    return 0;
+}
