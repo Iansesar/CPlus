@@ -1,0 +1,28 @@
+# Initialize variables to store the sum, odd numbers, and even numbers
+total = 0
+odd_numbers = []
+even_numbers = []
+
+# Ask the user to input 10 integers
+for i in range(10):
+    while True:
+        try:
+            num = int(input(f"Enter integer {i + 1}: "))
+            if num % 2 == 1:  # Check if the input is odd
+                odd_numbers.append(num)
+            else:
+                even_numbers.append(num)
+            total += num
+            break
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
+
+# Display the odd and even numbers
+print("The odd numbers you entered:")
+for num in odd_numbers:
+    print(num)
+
+print("The even numbers you entered:")
+for num in even_numbers:
+    print(num)
+
