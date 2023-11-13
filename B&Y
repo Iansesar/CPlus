@@ -1,0 +1,49 @@
+#include <iostream>
+#include <bitset>
+#include <string>
+
+// Function to convert binary to text
+std::string binaryToText(const std::string& binaryString) {
+    std::string textString;
+    for (size_t i = 0; i < binaryString.length(); i += 8) {
+        std::bitset<8> bits(binaryString.substr(i, 8));
+        char c = static_cast<char>(bits.to_ulong());
+        textString.push_back(c);
+    }
+    return textString;
+}
+
+// Function to convert text to binary
+std::string textToBinary(const std::string& textString) {
+    std::string binaryString;
+    for (char c : textString) {
+        std::bitset<8> bits(c);
+        binaryString += bits.to_string();
+    }
+    return binaryString;
+}
+
+int main() {
+    char choice;
+    std::string input;
+
+    std::cout << "Enter 'b' for binary to text or 't' for text to binary: ";
+    std::cin >> choice;
+
+    std::cout << "Enter the data: ";
+    std::cin >> input;
+
+    if (choice == 'b') {
+        // Convert binary to text
+        std::string textResult = binaryToText(input);
+        std::cout << "Binary to Text: " << textResult << std::endl;
+    } else if (choice == 't') {
+        // Convert text to binary
+        std::string binaryResult = textToBinary(input);
+        std::cout << "Text to Binary: " << binaryResult << std::endl;
+    } else {
+        std::cout << "Invalid choice. Please enter 'b' or 't'." << std::endl;
+    }
+
+    return 0;
+}
